@@ -1,0 +1,32 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<div id="id"></div>
+<input id="toping" onkeyup="actions.pon(event)" />
+<button onclick="actions.ping()">Küld</button> -> <span id="ms"></span>
+<br><hr><br><div id="mb"></div>
+<script>
+    let uid = Math.round(Math.random() * 10000000000000000)
+    document.getElementById("id").innerHTML = uid
+    let actions = {
+        ping() {
+            axios
+                .post('/ping', { x: document.getElementById('toping').value, id: uid })
+                .then(resp => {
+                    if (resp.data.nu) {
+                        document.getElementById('toping').value = ''
+                        document.getElementById("ms")
+                            .innerHTML = `Elküldve ${resp.data.nu - 1} kliens felé!`
+                    }
+                })
+        },
+        pon(g) {
+            if (g.code==="Enter") this.ping()
+        }
+    }
+    var ev = new EventSource('/start/'+uid)
+    ev.addEventListener('time', (result) => {
+        res = JSON.parse(result.data)
+        document.getElementById("mb")
+                .innerHTML += `
+                [${res.uid}] - ${res.ts.split('T')[1].split('.')[0]}: <b>${res.msg}</b><br>`
+    })
+</script>

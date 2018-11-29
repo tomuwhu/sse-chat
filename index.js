@@ -17,7 +17,7 @@ Object.keys(ifaces).forEach(function (ifname) {
         } else {
             console.log(ifname, iface.address)
         }
-        ++alias
+        ++alias 
     })
 })
 

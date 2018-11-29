@@ -2,6 +2,7 @@ var SSE = require('sse-nodejs');
 var bodyParser = require('body-parser')
 var express = require('express');
 var app = express();
+const PORT = process.env.PORT || 5000
 app.use(bodyParser.json())
 var sse = new Map
 var allmsg = []
@@ -26,4 +27,4 @@ app.post('/ping', (req, res) => {
     res.send({ nu: sse.size })
 })
 
-app.listen(5000)
+app.listen(PORT)

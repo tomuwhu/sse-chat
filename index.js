@@ -16,7 +16,7 @@ app.get('/start/:id', (req, res) => {
     let appid = req.params.id
     app.disconnect( () => sse.delete(appid) )
     sse.set( appid, app )
-    allmsg.forEach( v => app.sendEvent('time', () => v ) )
+    //allmsg.forEach( v => app.sendEvent('time', () => v ) )
 })
 
 app.post('/ping', (req, res) => {

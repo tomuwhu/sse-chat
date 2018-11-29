@@ -21,7 +21,9 @@ Object.keys(ifaces).forEach(function (ifname) {
     })
 })
 
-app.get('/', (req, res) => res.sendFile(__dirname + '/index.html') )
+app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'))
+
+app.get('/favicon.ico', (req, res) => res.sendFile(__dirname + '/favicon.ico'))
 
 app.get('/start/:id', (req, res) => {
     let app = SSE(res)

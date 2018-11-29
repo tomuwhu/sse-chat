@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon node index"
+    "test": "nodemon node index",
+    "start": "node index.js"
   },
   "author": "Dr. Németh Tamás",
   "license": "MIT",

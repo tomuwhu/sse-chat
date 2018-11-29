@@ -24,12 +24,12 @@ Object.keys(ifaces).forEach(function (ifname) {
 app.get('/', (req, res) => res.sendFile(__dirname + '/index.html') )
 
 app.get('/start/:id', (req, res) => {
-        let app = SSE(res)
-        let appid = req.params.id
-        app.disconnect( () => sse.delete(appid) )
-        sse.set( appid, app )
-        allmsg.forEach( v => app.sendEvent('time', () => v ) )
-    })
+    let app = SSE(res)
+    let appid = req.params.id
+    app.disconnect( () => sse.delete(appid) )
+    sse.set( appid, app )
+    allmsg.forEach( v => app.sendEvent('time', () => v ) )
+})
 
 app.post('/ping', (req, res) => {
     allmsg.push( data = { ts: new Date(), msg: req.body.x, uid: req.body.id })
